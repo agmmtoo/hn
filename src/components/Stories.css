@@ -1,0 +1,11 @@
+.story-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.story {
+  height: 50px;
+}
+.story:hover {
+  opacity: 0.5;
+}

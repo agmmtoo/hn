@@ -1,25 +1,23 @@
-import logo from './logo.svg';
+// locl component
+import Stories from './components/Stories';
+
+// hooks
+import useFetch from './hooks/fetch-hook';
+
+// style
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+  const { loading, data, error } = useFetch({
+    url: 'https://hacker-news.firebaseio.com/v0/topstories.json',
+  });
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>error: {JSON.stringify(error)}</div>;
+  if (data) return (
+    <Stories stories={data} />
+  )
+  return <div>idk</div>
 }
 
 export default App;
