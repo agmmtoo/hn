@@ -9,15 +9,14 @@ import './App.css';
 
 const App = () => {
   const { loading, data, error } = useFetch({
-    url: 'https://hacker-news.firebaseio.com/v0/topstories.json',
+    url: 'https://hacker-news.firebaseio.com/v0/beststories.json',
   });
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>error: {JSON.stringify(error)}</div>;
   if (data) return (
     <Stories stories={data} />
-  )
-  return <div>idk</div>
+  );
 }
 
 export default App;

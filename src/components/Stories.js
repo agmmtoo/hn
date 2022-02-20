@@ -17,23 +17,30 @@ const Stories = ({ stories }) => {
 }
 
 const Story = ({ story }) => {
-    const [storyRef, intersecting] = useObserver()
+    const [storyRef, intersecting] = useObserver();
 
-    const { loading, data, error } = useFetch({
-        url: `https://hacker-news.firebaseio.com/v0/item/${story}.json`,
-        halt: intersecting,
-    })
+    // url to fetch
+    const url = `https://hacker-news.firebaseio.com/v0/item/${story}.json`;
 
-    if (!intersecting) return <div className='story' ref={storyRef} key={story}>{intersecting && story}</div>
+    // halt the fetch (don't fetch) if it isn't visible
+    const halt = !intersecting;
 
-    if (loading) return <div>Loading...</div>
+    const { loading, data, error } = useFetch({ url, halt });
+
+    if (loading) return <div className='story' ref={storyRef} key={story}>[Loading...]</div>
     if (error) return <div>Error</div>
     if (data) return (
         <div ref={storyRef} className='story' key={story}>
-            {JSON.stringify(data)}
+            {/* {data.id} */}
+            {data.score}
+            {data.title}
+            {/* {data.by} */}
+            {new Date(data.time * 1000).toString()}
+            {/* {data.url} */}
+            {/* {data.type} */}
         </div>
     );
-    return null;
+
 }
 
 export default Stories;

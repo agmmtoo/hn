@@ -23,6 +23,9 @@ const useObserver = () => {
         const elem = storyRef.current;
         observer.observe(elem);
 
+        // once it got visible, unobserve, and don't refetch
+        if (intersecting) observer.unobserve(elem);
+
         return () => observer.unobserve(elem)
     });
 
