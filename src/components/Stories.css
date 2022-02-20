@@ -1,12 +1,14 @@
 .story-container {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; */
   padding: 2em;
 }
-.story {
-  height: 100px;
-}
-.story:hover {
-  opacity: 0.5;
+
+@media only screen and (min-width: 720px) {
+  .story-container {
+    padding: 0;
+    margin-left: 15vw;
+    max-width: 70vw;
+  }
 }
