@@ -8,8 +8,8 @@ import useFetch from '../hooks/fetch-hook';
 // style
 import './MainListItem.css';
 
-// factory
-import formatTime from '../factories/formatTime';
+// utils
+import formatTime from '../utils/formatTime';
 
 const MainListItem = ({ itemId }) => {
     const [elemRef, intersecting] = useObserver();
@@ -27,7 +27,7 @@ const MainListItem = ({ itemId }) => {
     if (data) return (
         <div ref={elemRef} className='main-list-item'>
             <h1>
-                <a href={data.url} target='_blank' rel="noreferrer">
+                <a href={data.url} target='_blank' rel='noreferrer'>
                     {data.title}
                 </a>
             </h1>
@@ -36,10 +36,17 @@ const MainListItem = ({ itemId }) => {
                 state={data}
             >
                 <div className='main-list-item-info'>
-                    <div className='info'>{`${data.score} Pts`}</div>
-                    <div className='info'>{formatTime(data.time)}</div>
-                    <div className='info'>{data.by}</div>
-                    <div className='info url'>{data.url?.split('/')[2]}</div>
+                    {data.score}Pts
+                    {' • '}
+                    {formatTime(data.time)}
+                    {' • '}
+                    {data.by}
+                    {data.kids
+                        ? ` • ${data.kids.length} comments`
+                        : ''}
+                    {data.url
+                        ? ` • ${data.url.split('/')[2]}`
+                        : ''}
                 </div>
             </Link>
         </div>

@@ -8,6 +8,7 @@
 }
 
 .main-list-item h1 {
+  margin: none;
   font-size: 18px;
   font-weight: 600;
   font-family: "Encode Sans", sans-serif;
@@ -20,15 +21,16 @@
 }
 
 .main-list-item-info {
+  padding: 10px 0px;
   font-size: 14px;
-  display: flex;
+  /* display: flex; */
   opacity: 0.8;
-  flex-direction: row;
-  column-gap: 5px;
+  /* flex-direction: row; */
+  /* column-gap: 5px; */
   /* justify-content: space-around; */
 }
 
-.main-list-item-info .info.url {
+.main-list-item-info .info {
   /* background-color: #333; */
-  overflow-x: hidden;
+  display: inline-flex;
 }

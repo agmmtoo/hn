@@ -4,6 +4,9 @@ import { useLocation, useParams } from 'react-router';
 // hook
 import useFetch from '../hooks/fetch-hook';
 
+// component
+import CommentListItem from './CommentListItem';
+
 const ItemDetail = () => {
     const location = useLocation();
     const item = location.state;
@@ -30,7 +33,15 @@ const FetchItem = ({ itemId }) => {
 
 const Item = ({ item }) => {
     return (
-        <div>{item.title}</div>
+        <>
+            <h1>{item.title}</h1>
+            <div dangerouslySetInnerHTML={{ __html: item.text }} />
+            <div className='comment-container'>
+                {item.kids?.filter(Boolean).map(kidId => {
+                    return <CommentListItem key={kidId} commentId={kidId} />
+                })}
+            </div>
+        </>
     )
 }
 
