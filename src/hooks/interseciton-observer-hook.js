@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 const useObserver = () => {
     const [intersecting, setIntersecting] = useState(false);
 
-    const storyRef = useRef(null);
+    const elemRef = useRef(null);
 
     const calllback = (entries, observer) => {
         entries.forEach(entry => {
@@ -20,7 +20,7 @@ const useObserver = () => {
 
     useEffect(() => {
         const observer = new IntersectionObserver(calllback, options);
-        const elem = storyRef.current;
+        const elem = elemRef.current;
         observer.observe(elem);
 
         // once it got visible, unobserve, and don't refetch
@@ -29,7 +29,7 @@ const useObserver = () => {
         return () => observer.unobserve(elem)
     });
 
-    return [storyRef, intersecting];
+    return [elemRef, intersecting];
 }
 
 export default useObserver;

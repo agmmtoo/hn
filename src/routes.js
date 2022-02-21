@@ -1,11 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
 
 // components
-import Stories from './components/Stories';
+import Main from './components/Main';
+import ItemDetail from './components/ItemDetail';
 
 const AppRoutes = () =>
     <Routes>
-        <Route exact path='/' element={<Stories />} />
+        <Route exact path='/' element={<Main />} />
+        <Route exact path='/:itemId' element={<ItemDetail />} />
     </Routes>
 
 export default AppRoutes;

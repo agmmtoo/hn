@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  font-family: "Sora", sans-serif, "Encode Sans", sans-serif;
+  font-family: "Sora", "Encode Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

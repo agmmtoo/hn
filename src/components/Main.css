@@ -1,12 +1,11 @@
-.story-container {
-  /* display: flex;
+.main-container {
+  display: flex;
   flex-direction: column;
-  justify-content: center; */
   padding: 2em;
 }
 
 @media only screen and (min-width: 720px) {
-  .story-container {
+  .main-container {
     padding: 0;
     margin-left: 15vw;
     max-width: 70vw;
