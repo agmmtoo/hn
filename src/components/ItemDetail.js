@@ -8,6 +8,9 @@ import useScrollPosition from '../hooks/scroll-position-hook';
 // component
 import CommentListItem from './CommentListItem';
 
+// utils
+import formatTime from '../utils/formatTime';
+
 // style
 import './ItemDetail.css';
 
@@ -42,6 +45,13 @@ const Item = ({ item }) => {
     return (
         <div className='item'>
             <h1>{item.title}</h1>
+            <div className='item-info'>
+                {item.by}
+                {' • '}
+                {Item.score || 0}Pts
+                {' • '}
+                {formatTime(item.time)}
+            </div>
             <div className='dangerous-html' dangerouslySetInnerHTML={{ __html: item.text }} />
             <div className='comment-container'>
                 {item.kids?.filter(Boolean).map(kidId => {

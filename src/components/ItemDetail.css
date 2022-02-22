@@ -4,6 +4,8 @@
   overflow-wrap: break-word;
 }
 
-.comment-container {
-  /* font-family: "Sora", "Encode Sans", sans-serif; */
+.item-info {
+  padding: 10px 0px;
+  font-size: 14px;
+  opacity: 0.8;
 }
