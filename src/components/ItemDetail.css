@@ -1,7 +1,12 @@
 .item {
-  /* margin: 20px; */
+  /* padding: 20px; */
   max-width: 100vw;
   overflow-wrap: break-word;
+}
+
+.item h1 a {
+  color: inherit;
+  text-decoration: inherit;
 }
 
 .item-info {

@@ -43,7 +43,7 @@ const MainListItem = ({ itemId, index }) => {
                     {' • '}
                     {data.by}
                     {data.descendants
-                        ? ` • ${data.descendants}comment${data.descendants > 1 ? 's' : ''}`
+                        ? ` • ${data?.descendants}comment${data.descendants > 1 ? 's' : ''}`
                         : ''}
                     {data.url
                         ? ` • ${data.url.split('/')[2]}`

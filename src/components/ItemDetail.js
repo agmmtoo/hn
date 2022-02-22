@@ -44,13 +44,23 @@ const Item = ({ item }) => {
 
     return (
         <div className='item'>
-            <h1>{item.title}</h1>
+            <h1>
+                <a href={item.url} target='_blank' rel='noreferrer'>
+                    {item.title}
+                </a>
+            </h1>
             <div className='item-info'>
                 {item.by}
                 {' • '}
                 {Item.score || 0}Pts
                 {' • '}
                 {formatTime(item.time)}
+                {item.descendants
+                    ? ` • ${item?.descendants}comment${item.descendants > 1 ? 's' : ''}`
+                    : ''}
+                {item.url
+                    ? ` • ${item.url.split('/')[2]}`
+                    : ''}
             </div>
             <div className='dangerous-html' dangerouslySetInnerHTML={{ __html: item.text }} />
             <div className='comment-container'>
