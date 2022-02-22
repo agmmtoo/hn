@@ -17,13 +17,21 @@ const CommentListItem = ({ commentId }) => {
     const { loading, data, error } = useFetch({ url, halt });
     if (loading) return <div className='comment-list-item' ref={elemRef} key={commentId}>[CommentListItem loading...]</div>
     if (error) return <div>Error</div>
-    if (data) return (
-        <div ref={elemRef} className='comment-list-item'>
-            {data.by}
-            {data.parent}
-            <div dangerouslySetInnerHTML={{ __html: data.text }} />
-        </div>
-    )
+    if (data) {
+        // support deep link
+        const replacedText = data.text?.replaceAll('<a href="https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=', '<a href="/');
+
+        return (
+            <div ref={elemRef} className='comment-list-item'>
+                <div className='commentor'>{data.by}</div>
+                {data.deleted ? '[deleted]' : null}
+                <div className='dangerous-html-comment' dangerouslySetInnerHTML={{ __html: replacedText }} />
+                {data.kids?.filter(Boolean).map(kidId => {
+                    return <CommentListItem key={kidId} commentId={kidId} />
+                })}
+            </div>
+        )
+    }
 }
 
 export default CommentListItem;

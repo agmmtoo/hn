@@ -3,10 +3,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 body {
-  margin: 0;
+  margin: none;
   font-family: "Sora", "Encode Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #333;
+  background-color: #eee;
 }
 
 code {

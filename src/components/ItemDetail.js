@@ -3,9 +3,13 @@ import { useLocation, useParams } from 'react-router';
 
 // hook
 import useFetch from '../hooks/fetch-hook';
+import useScrollPosition from '../hooks/scroll-position-hook';
 
 // component
 import CommentListItem from './CommentListItem';
+
+// style
+import './ItemDetail.css';
 
 const ItemDetail = () => {
     const location = useLocation();
@@ -32,16 +36,19 @@ const FetchItem = ({ itemId }) => {
 }
 
 const Item = ({ item }) => {
+    // abandon scroll position from main page and go to top
+    useScrollPosition();
+
     return (
-        <>
+        <div className='item'>
             <h1>{item.title}</h1>
-            <div dangerouslySetInnerHTML={{ __html: item.text }} />
+            <div className='dangerous-html' dangerouslySetInnerHTML={{ __html: item.text }} />
             <div className='comment-container'>
                 {item.kids?.filter(Boolean).map(kidId => {
                     return <CommentListItem key={kidId} commentId={kidId} />
                 })}
             </div>
-        </>
+        </div>
     )
 }
 

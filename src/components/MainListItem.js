@@ -11,7 +11,7 @@ import './MainListItem.css';
 // utils
 import formatTime from '../utils/formatTime';
 
-const MainListItem = ({ itemId }) => {
+const MainListItem = ({ itemId, index }) => {
     const [elemRef, intersecting] = useObserver();
 
     // url to fetch
@@ -36,13 +36,14 @@ const MainListItem = ({ itemId }) => {
                 state={data}
             >
                 <div className='main-list-item-info'>
+                    {`#${index} • `}
                     {data.score}Pts
                     {' • '}
                     {formatTime(data.time)}
                     {' • '}
                     {data.by}
-                    {data.kids
-                        ? ` • ${data.kids.length} comments`
+                    {data.descendants
+                        ? ` • ${data.descendants}comment${data.descendants > 1 ? 's' : ''}`
                         : ''}
                     {data.url
                         ? ` • ${data.url.split('/')[2]}`

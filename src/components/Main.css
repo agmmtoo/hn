@@ -1,7 +1,7 @@
 .main-container {
   display: flex;
   flex-direction: column;
-  padding: 2em;
+  padding: 1em;
 }
 
 @media only screen and (min-width: 720px) {
@@ -11,3 +11,15 @@
     max-width: 70vw;
   }
 }
+
+a {
+  font-family: "Encode Sans", sans-serif;
+  color: rgb(0, 160, 160);
+  font-weight: 500;
+  text-underline-offset: 5px;
+  text-decoration-style: dotted;
+}
+
+/* h1 {
+  font-family: "Sora", sans-serif;
+} */

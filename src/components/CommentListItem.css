@@ -1,3 +1,35 @@
 .comment-list-item {
-  min-height: 100px;
+  min-height: 30px;
+  border-left: 2px solid #333;
+  margin: 50px 0px 0px 0px;
+  padding-left: 10px;
+}
+
+.commentor {
+  opacity: 0.8;
+}
+
+/* .comment-list-item:nth-of-type(2n) {
+  background: blue;
+}
+
+.comment-list-item:nth-of-type(2n + 1) {
+  background: none;
+} */
+
+.comment-list-item h1 {
+  font-family: "Sora", "Encode Sans", sans-serif;
+}
+
+.dangerous-html-comment {
+  line-height: 28px;
+  overflow-wrap: break-word;
+}
+
+.dangerous-html-comment a {
+  font-family: "Encode Sans", sans-serif;
+  color: rgb(0, 160, 160);
+  font-weight: 500;
+  text-underline-offset: 5px;
+  text-decoration-style: dotted;
 }
