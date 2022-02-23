@@ -1,0 +1,7 @@
+.svg-icon {
+  max-width: 35px;
+  /* inside ItemDetail.css h1 */
+  align-self: flex-start;
+  /* border: 2px solid #333;
+  border-radius: 10px; */
+}

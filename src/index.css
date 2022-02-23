@@ -21,3 +21,8 @@ code {
     monospace;
   /* overflow: scroll; */
 }
+
+::selection {
+  color: #eee;
+  background-color: rgb(250, 56, 159);
+}

@@ -9,9 +9,9 @@
 
 .main-list-item h1 {
   margin: none;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 600;
-  font-family: "Encode Sans", sans-serif;
+  font-family: Sora, "Encode Sans", sans-serif;
 }
 
 .main-list-item a {
@@ -20,17 +20,22 @@
   font-family: "Sora", sans-serif;
 }
 
+.main-list-item a:hover {
+  transition: color ease 1s;
+  color: rgb(0, 130, 130);
+}
+
 .main-list-item-info {
   padding: 10px 0px;
   font-size: 14px;
-  /* display: flex; */
   opacity: 0.8;
-  /* flex-direction: row; */
-  /* column-gap: 5px; */
-  /* justify-content: space-around; */
+}
+
+.main-list-item-info:hover {
+  color: darkorange;
+  transition: color ease 1s;
 }
 
 .main-list-item-info .info {
-  /* background-color: #333; */
   display: inline-flex;
 }

@@ -7,6 +7,7 @@ import useScrollPosition from '../hooks/scroll-position-hook';
 
 // component
 import CommentListItem from './CommentListItem';
+import BookmarkIcon from './BookmarkIcon';
 
 // utils
 import formatTime from '../utils/formatTime';
@@ -42,17 +43,22 @@ const Item = ({ item }) => {
     // abandon scroll position from main page and go to top
     useScrollPosition();
 
+    // bookmark
+    // const [bookmarks, addBookmark] = useBookmark();
+
     return (
         <div className='item'>
             <h1>
                 <a href={item.url} target='_blank' rel='noreferrer'>
                     {item.title}
                 </a>
+                <BookmarkIcon id={item.id} />
             </h1>
+
             <div className='item-info'>
                 {item.by}
                 {' • '}
-                {Item.score || 0}Pts
+                {item.score || 0}Pts
                 {' • '}
                 {formatTime(item.time)}
                 {item.descendants
@@ -62,7 +68,9 @@ const Item = ({ item }) => {
                     ? ` • ${item.url.split('/')[2]}`
                     : ''}
             </div>
+
             <div className='dangerous-html' dangerouslySetInnerHTML={{ __html: item.text }} />
+
             <div className='comment-container'>
                 {item.kids?.filter(Boolean).map(kidId => {
                     return <CommentListItem key={kidId} commentId={kidId} />

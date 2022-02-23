@@ -1,7 +1,7 @@
 .comment-list-item {
   min-height: 30px;
   border-left: 2px solid #333;
-  margin: 50px 0px 0px 0px;
+  margin-top: 50px;
   padding-left: 10px;
 }
 
@@ -17,12 +17,8 @@
   background: none;
 } */
 
-.comment-list-item h1 {
-  font-family: "Sora", "Encode Sans", sans-serif;
-}
-
 .dangerous-html-comment {
-  line-height: 28px;
+  line-height: 26px;
   overflow-wrap: break-word;
 }
 
