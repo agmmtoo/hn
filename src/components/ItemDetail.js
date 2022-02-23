@@ -36,15 +36,13 @@ const FetchItem = ({ itemId }) => {
     if (loading) return <div>Story Detail Loading</div>
     if (error) return <div>FetchItem Error: {JSON.stringify(error)}</div>
     if (data) return <Item item={data} />
+    return <div>Checkme</div>
 
 }
 
 const Item = ({ item }) => {
     // abandon scroll position from main page and go to top
     useScrollPosition();
-
-    // bookmark
-    // const [bookmarks, addBookmark] = useBookmark();
 
     return (
         <div className='item'>

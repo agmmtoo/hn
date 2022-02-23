@@ -1,23 +1,23 @@
-// style
-import './Main.css';
+// lib
+import { useState } from 'react';
 
 // components
-import useFetch from '../hooks/fetch-hook';
 import MainListItem from './MainListItem';
-
-// libraries
-import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import Header from './Header';
 
 // hook
+import useFetch from '../hooks/fetch-hook';
 import useScrollPosition from '../hooks/scroll-position-hook';
+
+// style
+import './Main.css';
 
 const Main = () => {
     const [tab, setTab] = useState('topstories');
 
     // set scroll position with hook
-    const { key } = useLocation();
-    const [setScrollPosition] = useScrollPosition(key);
+    // const { key } = useLocation();
+    const [setScrollPosition] = useScrollPosition(tab);
 
     const { loading, data, error } = useFetch({
         url: `https://hacker-news.firebaseio.com/v0/${tab}.json`,
@@ -27,11 +27,18 @@ const Main = () => {
     if (error) return <div>error: {JSON.stringify(error)}</div>;
 
     if (data) return (
-        <div className='main-container' onClick={setScrollPosition}>
-            {data.map((itemId, index) => {
-                return <MainListItem key={itemId} itemId={itemId} index={index + 1} />
-            })}
-        </div>
+        <>
+            <header>
+                <Header tab={tab} switcher={setTab} />
+            </header>
+            <main>
+                <div className='main-container' onClick={setScrollPosition}>
+                    {data.map((itemId, index) => {
+                        return <MainListItem key={itemId} itemId={itemId} index={index + 1} />
+                    })}
+                </div>
+            </main>
+        </>
     );
 };
 
