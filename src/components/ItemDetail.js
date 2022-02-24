@@ -36,7 +36,8 @@ const FetchItem = ({ itemId }) => {
     if (loading) return <div>Story Detail Loading</div>
     if (error) return <div>FetchItem Error: {JSON.stringify(error)}</div>
     if (data) return <Item item={data} />
-    return <div>Checkme</div>
+
+    return null;
 
 }
 
