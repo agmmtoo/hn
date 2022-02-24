@@ -14,8 +14,11 @@ const formatTime = unixTime => {
 
     let ago;
     let unit;
-
-    if (sAgo > periods.y) {
+    if (sAgo > 2 * periods.y) {
+        ago = new Date(unixTime * 1000).toDateString();
+        unit = ''
+    }
+    else if (sAgo > periods.y) {
         ago = sAgo / periods.y;
         unit = 'y'
     }
@@ -41,7 +44,11 @@ const formatTime = unixTime => {
     }
     else ago = 0
 
-    return ago ? `${Math.floor(ago)}${unit}` : "justnow"
+    return ago
+        ? unit
+            ? `${Math.floor(ago)}${unit}`
+            : `${ago}`
+        : "justnow"
 }
 
 export default formatTime;

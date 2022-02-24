@@ -7,6 +7,7 @@
 
 .commentor {
   opacity: 0.8;
+  cursor: pointer;
 }
 
 /* .comment-list-item:nth-of-type(2n) {

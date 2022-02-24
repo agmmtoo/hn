@@ -9,6 +9,13 @@
   color: #333;
 }
 
+.header a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-style: dotted;
+}
+
 .hacker-news {
   font-size: 30px;
   font-weight: 600;

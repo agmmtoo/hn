@@ -21,7 +21,7 @@
 }
 
 .main-list-item a:hover {
-  transition: color ease 1s;
+  transition: color ease 0.5s;
   color: rgb(0, 130, 130);
 }
 
@@ -33,7 +33,7 @@
 
 .main-list-item-info:hover {
   color: darkorange;
-  transition: color ease 1s;
+  transition: color ease 0.5s;
 }
 
 .main-list-item-info .info {
