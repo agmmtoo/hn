@@ -1,11 +1,12 @@
 // initialize cache
-const cache = new Map();
-
+const cache = sessionStorage.getItem('cache') || {}
 const useCache = () => {
-    const hasCache = key => cache.has(key);
-    const getCache = key => cache.get(key);
-    const setCache = (key, value) => cache.set(key, value);
-
+    const hasCache = key => Boolean(cache[key])
+    const getCache = key => cache[key]
+    const setCache = (key, value) => {
+        cache[key] = value
+        sessionStorage.setItem('cache', JSON.stringify(cache))
+    }
     return [hasCache, getCache, setCache]
 }
 

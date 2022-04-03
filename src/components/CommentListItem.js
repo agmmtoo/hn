@@ -22,8 +22,8 @@ const CommentListItem = ({ commentId }) => {
     const [open, toggle] = useToggle();
 
     const { loading, data, error } = useFetch({ url, halt });
-    if (loading) return <div className='comment-list-item' ref={elemRef} key={commentId}>[CommentListItem loading...]</div>
-    if (error) return <div>Error</div>
+    if (loading) return <div className='comment-list-item' ref={elemRef} key={commentId}>[{commentId}]</div>
+    if (error) return <div>error: {JSON.stringify(error)}</div>
     if (data) {
         // support deep link
         const replacedText = data.text?.replaceAll('<a href="https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=', '<a href="/');

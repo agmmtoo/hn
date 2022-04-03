@@ -22,8 +22,8 @@ const MainListItem = ({ itemId, index }) => {
 
     const { loading, data, error } = useFetch({ url, halt });
 
-    if (loading) return <div className='main-list-item' ref={elemRef} key={itemId}>[MainListItem loading...]</div>
-    if (error) return <div>Error</div>
+    if (loading) return <div className='main-list-item' ref={elemRef} key={itemId}>[{itemId}]</div>
+    if (error) return <div>error: {JSON.stringify(error)}</div>
     if (data) return (
         <div ref={elemRef} className='main-list-item'>
             <h1>
