@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import { HiOutlineLink, HiOutlineAtSymbol, HiOutlineClock, HiOutlineTrendingUp, HiOutlineChat, HiOutlineHashtag } from 'react-icons/hi';
 
+// components
+import ErrorBoundary from '../components/ErrorBoundary';
+
 // hooks
 import useObserver from '../hooks/interseciton-observer-hook';
 import { StoryContext } from '../hooks/story-hook';
@@ -29,7 +32,11 @@ export default function Posts() {
 
     return (
         <ul className='m-4 max-w-3xl md:mx-auto'>
-            {stories.map((post, idx) => <Li key={post} item={post} idx={idx} />)}
+            {stories.map((post, idx) =>
+                <ErrorBoundary key={post}>
+                    <Li item={post} idx={idx} />
+                </ErrorBoundary>
+            )}
         </ul>
     );
 }
@@ -44,13 +51,14 @@ function Li({ item, idx }) {
 
     // effect to fetch the post detail
     useEffect(() => {
-        if (intersecting) getStory(item)
+        if (!intersecting) return;
+        getStory(item)
             .then(setStory)
             .catch(setError);
     }, [item, intersecting]);
 
     // render error
-    if (error) return <div className='text-center text-red-400'>{error.message}</div>
+    if (error) return <div className='min-h-[10vh] my-4 text-center text-red-400'>{error.message}</div>
 
     // render the post
     return (

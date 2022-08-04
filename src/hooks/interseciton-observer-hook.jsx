@@ -21,6 +21,10 @@ const useObserver = () => {
     useEffect(() => {
         const observer = new IntersectionObserver(calllback, options);
         const elem = elemRef.current;
+
+        // in case there's no element due to some error, do nothing so actual error can be thrown
+        if (!elem) return;
+
         observer.observe(elem);
 
         // once it got visible, unobserve, and don't refetch
