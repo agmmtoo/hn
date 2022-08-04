@@ -94,9 +94,9 @@ function Story({ story, idx }) {
                 href={url.href}
                 target='_blank'
                 rel='noreferrer'
-                className='hover:text-sky-800 visited:text-sky-900 transition-colors'
+                className=''
             >
-                <h2 className='text-2xl font-medium py-4'>{story.title}</h2>
+                <h2 className='hover:text-sky-800 transition-colors text-2xl font-medium py-4'>{story.title}</h2>
             </a>
             <Link
                 to={`${story.id}`}
