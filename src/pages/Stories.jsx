@@ -11,7 +11,7 @@ import useObserver from '../hooks/interseciton-observer-hook';
 import { StoryContext } from '../hooks/story-hook';
 
 // api
-import { getTopStories, getStory } from '../api/hn-apis';
+import { getTopStories, getStory as fetchStory } from '../api/hn-apis';
 
 export default function Posts() {
     // consume context
@@ -45,17 +45,27 @@ function Li({ item, idx }) {
     // hook to observe the element
     const [elemRef, intersecting] = useObserver();
 
-    // state to store the story
-    const [story, setStory] = useState(null);
+    // consume context
+    const { getStory, putStory } = useContext(StoryContext);
+    // get story from context Map
+    const story = getStory(item);
+
+    // error state
     const [error, setError] = useState(null);
 
     // effect to fetch the post detail
     useEffect(() => {
+        // if story is in context Map, do nothing
+        if (story) return;
+
+        // if story isn't visible yet, do nothing
         if (!intersecting) return;
-        getStory(item)
-            .then(setStory)
+
+        // now story isn't in context Map and visible
+        fetchStory(item)
+            .then((data) => putStory(item, data))
             .catch(setError);
-    }, [item, intersecting]);
+    }, [item, intersecting, story, getStory, putStory]);
 
     // render error
     if (error) return <div className='min-h-[10vh] my-4 text-center text-red-400'>{error.message}</div>
