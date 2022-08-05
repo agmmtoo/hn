@@ -1,37 +1,41 @@
 import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import moment from 'moment';
-import { HiOutlineLink, HiOutlineAtSymbol, HiOutlineClock, HiOutlineTrendingUp, HiOutlineChat, HiOutlineHashtag } from 'react-icons/hi';
 
 // components
 import ErrorBoundary from '../components/ErrorBoundary';
+import Info from '../components/Info';
 
 // hooks
 import useObserver from '../hooks/interseciton-observer-hook';
 import { StoryContext } from '../hooks/story-hook';
 
 // api
-import { getTopStories, getStory as fetchStory } from '../api/hn-apis';
+import { fetchStories, fetchStory } from '../api/hn-apis';
 
 export default function Posts() {
     // consume context
-    const { stories, setStories } = useContext(StoryContext);
+    const { tab, getStories, putStories } = useContext(StoryContext);
 
     const [error, setError] = useState(null);
 
+    const stories = getStories(tab);
+
     // effect to fetch top stories
     useEffect(() => {
-        getTopStories()
-            .then(setStories)
+        // if stories are already fetched, don't refetch
+        if (stories.length) return;
+
+        fetchStories(tab)
+            .then((data) => putStories(tab, data))
             .catch(setError);
-    }, [setStories]);
+    }, [putStories, stories.length, tab]);
 
 
     // render error
     if (error) return <div className='text-center text-red-400'>{error.message}</div>
 
     return (
-        <ul className='m-4 max-w-3xl md:mx-auto'>
+        <ul className=''>
             {stories.map((post, idx) =>
                 <ErrorBoundary key={post}>
                     <Li item={post} idx={idx} />
@@ -86,12 +90,13 @@ function Li({ item, idx }) {
 function Story({ story, idx }) {
     // if 'type' is 'story' construct from 'item.url'
     // if 'job/ask', from 'location'
-    const url = new URL(story.url || window.location.href + String(story.id));
+    story.url = new URL(story.url || window.location.href + String(story.id));
+    story.idx = idx;
 
     return (
         <>
             <a
-                href={url.href}
+                href={story.url.href}
                 target='_blank'
                 rel='noreferrer'
                 className=''
@@ -100,37 +105,8 @@ function Story({ story, idx }) {
             </a>
             <Link
                 to={`${story.id}`}
-                className='flex items-center flex-wrap gap-2 text-sm text-gray-600 py-4 transition-colors hover:text-sky-800'
             >
-                <div className='inline-flex items-center'>
-                    <HiOutlineHashtag className='inline mr-1' />
-                    {++idx}
-                </div>
-
-                <div className='inline-flex items-center'>
-                    <HiOutlineTrendingUp className='inline mr-1' />
-                    {story.score}
-                </div>
-
-                <div className='inline-flex items-center'>
-                    <HiOutlineLink className='inline mr-1' />
-                    {url.hostname}
-                </div>
-
-                <div className='inline-flex items-center'>
-                    <HiOutlineChat className='inline mr-1' />
-                    {story.descendants}
-                </div>
-                <div className='inline-flex items-center'>
-                    <HiOutlineAtSymbol className='inline mr-1' />
-                    {story.by}
-                </div>
-
-                <div className='inline-flex items-center'>
-                    <HiOutlineClock className='inline mr-1' />
-                    {moment(story.time * 1000).fromNow()}
-                </div>
-
+                <Info story={story} />
             </Link>
         </>
     )

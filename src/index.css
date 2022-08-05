@@ -14,7 +14,7 @@
   html,
   body,
   #root {
-    @apply h-full bg-slate-200 text-slate-800 dark:bg-slate-800 dark:text-slate-200;
+    @apply h-full bg-slate-200 text-slate-800 dark:bg-slate-800 dark:text-gray-400;
   }
 }
 

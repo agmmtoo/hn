@@ -5,16 +5,16 @@ const hnaxios = axios.create({
     timeout: 10000,
 });
 
-export async function getTopStories() {
+export async function fetchStories(tab) {
     try {
-        const res = await hnaxios.get('topstories.json');
+        const res = await hnaxios.get(`${tab}.json`);
         return res.data;
     } catch (err) {
         throw err;
     }
 }
 
-export async function getStory(id) {
+export async function fetchStory(id) {
     try {
         const res = await hnaxios.get(`item/${id}.json`);
         return res.data;

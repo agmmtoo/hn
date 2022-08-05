@@ -5,7 +5,11 @@ import { useParams } from 'react-router-dom';
 import { StoryContext } from '../hooks/story-hook';
 
 // api
-import { getStory as fetchStory } from '../api/hn-apis';
+import { fetchStory } from '../api/hn-apis';
+
+// components
+import Info from '../components/Info';
+import Comment from '../components/Comment';
 
 export default function Post() {
     const { id } = useParams();
@@ -24,7 +28,8 @@ export default function Post() {
         if (story) return;
 
         // now story isn't in context Map and visible
-        fetchStory(id)
+        // something story is there, it's jus 'null'
+        if (story !== null) fetchStory(id)
             .then((data) => putStory(id, data))
             .catch(setError);
     }, [story, getStory, putStory, id]);
@@ -33,17 +38,23 @@ export default function Post() {
 
     // render the post
     if (story) return (
-        <div className='mx-4 max-w-5xl xl:mx-auto'>
-            <a href={story.url}
-                target='_blank'
-                rel='noreferrer'
-            >
-                <h1 className='hover:text-sky-800 transition-colors text-3xl py-4 font-medium'>
-                    {story.title}
-                </h1>
-            </a>
+        <>
+            <div className=''>
+                <a href={story.url}
+                    target='_blank'
+                    rel='noreferrer'
+                >
+                    <h1 className='hover:text-sky-800 transition-colors text-3xl py-4 font-medium'>
+                        {story.title}
+                    </h1>
+                </a>
 
-            {story.text && <p className='py-4 leading-7 tracking-wide' dangerouslySetInnerHTML={{ __html: story.text }} />}
-        </div>
+                <Info story={story} />
+
+                {story.text && <p className='py-4 leading-7 tracking-wide' dangerouslySetInnerHTML={{ __html: story.text }} />}
+            </div>
+
+            {story.kids?.map((kid, idx) => <Comment key={kid} id={kid} idx={idx} />)}
+        </>
     );
 }
