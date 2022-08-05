@@ -5,7 +5,7 @@ import { HiOutlineLink, HiOutlineTrendingUp, HiOutlineChat, HiOutlineHashtag } f
 export default function Info({ story }) {
     // if 'type' is 'story' construct from 'item.url'
     // if 'job/ask', from 'location'
-    story.url = new URL(story.url || window.location.href + String(story.id));
+    const url = new URL(story.url || window.location.href + String(story.id));
 
     return (
         <div
@@ -23,7 +23,7 @@ export default function Info({ story }) {
 
             <div className='inline-flex items-center'>
                 <HiOutlineLink className='inline mr-1' />
-                {story.url.hostname}
+                {url.hostname}
             </div>
 
             <div className='inline-flex items-center'>

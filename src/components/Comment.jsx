@@ -52,7 +52,7 @@ export default function Comment({ id }) {
                 onClick={() => setOpen(open => !open)}
                 className='flex justify-between text-sm text-gray-600 dark:text-gray-500'
             >
-                <div className='flex items-center flex-wrap gap-2'>
+                <div className='flex items-center flex-wrap gap-2 cursor-pointer'>
                     <InfoComment story={story} className='hover:bg-emerald-400' />
                 </div>
                 {

@@ -45,7 +45,7 @@ export default function Posts() {
     );
 }
 
-function Li({ item, idx }) {
+export function Li({ item, idx }) {
     // hook to observe the element
     const [elemRef, intersecting] = useObserver();
 
@@ -88,15 +88,12 @@ function Li({ item, idx }) {
 }
 
 function Story({ story, idx }) {
-    // if 'type' is 'story' construct from 'item.url'
-    // if 'job/ask', from 'location'
-    story.url = new URL(story.url || window.location.href + String(story.id));
     story.idx = idx;
 
     return (
         <>
             <a
-                href={story.url.href}
+                href={story?.url}
                 target='_blank'
                 rel='noreferrer'
                 className=''
@@ -104,7 +101,7 @@ function Story({ story, idx }) {
                 <h2 className='hover:text-sky-800 transition-colors text-2xl font-medium py-4'>{story.title}</h2>
             </a>
             <Link
-                to={`${story.id}`}
+                to={`/${story.id}`}
             >
                 <Info story={story} />
             </Link>

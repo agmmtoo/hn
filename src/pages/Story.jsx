@@ -34,6 +34,7 @@ export default function Post() {
             .then((data) => putStory(id, data))
             .catch(setError);
     }, [story, getStory, putStory, id]);
+
     // render error
     if (error) return <div className='min-h-[10vh] my-4 text-center text-red-400'>{error.message}</div>
 

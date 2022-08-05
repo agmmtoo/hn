@@ -21,16 +21,13 @@ export default memo(function Bookmark({ id }) {
     // single handler, using methods above
     const handleBookmark = (id) => bookmarked(id) ? removeFromBookmarks(id) : addToBookmarks(id);
 
-    // debug
-    console.log(bookmarks);
-
     return (
         <div className='float-right'>
             <HiBookmark
                 onClick={() => handleBookmark(id)}
                 className={`h-10 w-10 transition ${bookmarked(id)
-                    ? 'text-sky-800 scale-y-125'
-                    : 'text-current'
+                    ? 'text-sky-800 scale-y-125 shadow'
+                    : 'text-slate-500'
                     }`}
             />
         </div>
