@@ -10,6 +10,7 @@ import { fetchStory } from '../api/hn-apis';
 // components
 import Info from '../components/Info';
 import Comment from '../components/Comment';
+import Bookmark from '../components/Bookmark';
 
 export default function Post() {
     const { id } = useParams();
@@ -48,11 +49,12 @@ export default function Post() {
                         {story.title}
                     </h1>
                 </a>
+                <Bookmark id={id} />
 
-                <Info story={story} />
-
-                {story.text && <p className='prose md:prose-lg py-4 leading-7 tracking-wide' dangerouslySetInnerHTML={{ __html: story.text }} />}
             </div>
+            <Info story={story} />
+
+            {story.text && <p className='prose md:prose-lg py-4 leading-7 tracking-wide' dangerouslySetInnerHTML={{ __html: story.text }} />}
 
             {story.kids?.map((kid, idx) => <Comment key={kid} id={kid} idx={idx} />)}
         </>

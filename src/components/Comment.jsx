@@ -1,5 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 
+import { HiOutlineEye, HiOutlineEyeOff } from 'react-icons/hi';
+
 // hook
 import { StoryContext } from '../hooks/story-hook';
 import useObserver from '../hooks/interseciton-observer-hook';
@@ -22,6 +24,9 @@ export default function Comment({ id }) {
     // error state
     const [error, setError] = useState(null);
 
+    // comment body toggle state
+    const [open, setOpen] = useState(true);
+
     // effect to fetch the post detail
     useEffect(() => {
         // if story is in context Map, do nothing
@@ -43,13 +48,29 @@ export default function Comment({ id }) {
     // render the post
     if (Boolean(story)) return (
         <div className='mt-4 border-l-2 border-slate-400 pl-2'>
-            <div className='flex items-center flex-wrap gap-2 text-sm text-gray-600 dark:text-gray-500'>
-                <InfoComment story={story} />
+            <div
+                onClick={() => setOpen(open => !open)}
+                className='flex justify-between text-sm text-gray-600 dark:text-gray-500'
+            >
+                <div className='flex items-center flex-wrap gap-2'>
+                    <InfoComment story={story} className='hover:bg-emerald-400' />
+                </div>
+                {
+                    open
+                        ? <HiOutlineEye />
+                        : <HiOutlineEyeOff />
+                }
             </div>
-            <p className='prose md:prose-lg  py-4 leading-7 tracking-wide' dangerouslySetInnerHTML={{ __html: story.text }} />
+            {
+                open && (
+                    <>
+                        <p className='prose md:prose-lg  py-4 leading-7 tracking-wide' dangerouslySetInnerHTML={{ __html: story.text }} />
 
-            {/* render replies */}
-            {story.kids?.map((kid) => <Comment key={kid} id={kid} />)}
+                        {/* render replies */}
+                        {story.kids?.map((kid) => <Comment key={kid} id={kid} />)}
+                    </>
+                )
+            }
         </div>
     );
 
@@ -57,7 +78,7 @@ export default function Comment({ id }) {
     return (
         <div
             ref={elemRef}
-            className='min-h-[10vh] my-4'
+            className='min-h-[20vh] my-4'
         >
             {id}
         </div>
