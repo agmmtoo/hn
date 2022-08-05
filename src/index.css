@@ -20,6 +20,6 @@
 
 @layer components {
   a {
-    @apply hover:underline underline-offset-2 decoration-dotted transition-colors;
+    @apply break-words hover:underline underline-offset-2 decoration-dotted transition-colors;
   }
 }

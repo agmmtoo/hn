@@ -51,7 +51,7 @@ export default function Post() {
 
                 <Info story={story} />
 
-                {story.text && <p className='py-4 leading-7 tracking-wide' dangerouslySetInnerHTML={{ __html: story.text }} />}
+                {story.text && <p className='prose md:prose-lg py-4 leading-7 tracking-wide' dangerouslySetInnerHTML={{ __html: story.text }} />}
             </div>
 
             {story.kids?.map((kid, idx) => <Comment key={kid} id={kid} idx={idx} />)}
