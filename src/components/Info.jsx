@@ -9,7 +9,7 @@ export default function Info({ story }) {
 
     return (
         <div
-            className='flex items-center flex-wrap gap-2 text-sm text-gray-600 dark:text-gray-500 py-4'>
+            className='flex items-center flex-wrap gap-2 text-sm text-gray-600 dark:text-gray-400 py-4'>
             {typeof (story.idx) == 'number'
                 && <div className='inline-flex items-center'>
                     <HiOutlineHashtag className='inline mr-1' />

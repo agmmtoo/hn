@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 // components
 import ErrorBoundary from '../components/ErrorBoundary';
@@ -35,13 +36,23 @@ export default function Posts() {
     if (error) return <div className='text-center text-red-400'>{error.message}</div>
 
     return (
-        <ul className=''>
-            {stories.map((post, idx) =>
-                <ErrorBoundary key={post}>
-                    <Li item={post} idx={idx} />
-                </ErrorBoundary>
-            )}
-        </ul>
+        <>
+            <Helmet>
+                <title>Hacker News</title>
+                <meta
+                    name="description"
+                    content="HackerNews' Stories"
+                />
+            </Helmet>
+
+            <ul className=''>
+                {stories.map((post, idx) =>
+                    <ErrorBoundary key={post}>
+                        <Li item={post} idx={idx} />
+                    </ErrorBoundary>
+                )}
+            </ul>
+        </>
     );
 }
 
@@ -98,7 +109,7 @@ function Story({ story, idx }) {
                 rel='noreferrer'
                 className=''
             >
-                <h2 className='hover:text-sky-800 transition-colors text-2xl font-medium py-4'>{story.title}</h2>
+                <h2 className='text-2xl font-medium py-4'>{story.title}</h2>
             </a>
             <Link
                 to={`/${story.id}`}

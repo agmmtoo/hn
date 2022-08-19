@@ -12,6 +12,9 @@ import { fetchStory } from '../api/hn-apis';
 // component
 import InfoComment from './InfoComment';
 
+// utils
+import classNames from '../utils/classNames';
+
 export default function Comment({ id }) {
     // hook to observe the element
     const [elemRef, intersecting] = useObserver();
@@ -50,7 +53,12 @@ export default function Comment({ id }) {
         <div className='mt-4 border-l-2 border-slate-400 pl-2'>
             <div
                 onClick={() => setOpen(open => !open)}
-                className='flex justify-between text-sm text-gray-600 dark:text-gray-500'
+                className={classNames(
+                    'py-2 px-1 flex justify-between text-sm text-gray-600 dark:text-gray-400',
+                    open
+                        ? ''
+                        : 'rounded shadow shadow-sky-800 dark:shadow-sky-400'
+                )}
             >
                 <div className='flex items-center flex-wrap gap-2 cursor-pointer'>
                     <InfoComment story={story} className='hover:bg-emerald-400' />
@@ -64,7 +72,7 @@ export default function Comment({ id }) {
             {
                 open && (
                     <>
-                        <p className='prose md:prose-lg  py-4 leading-7 tracking-wide' dangerouslySetInnerHTML={{ __html: story.text }} />
+                        <p className='prose dark:prose-invert md:prose-lg  py-4 leading-7 tracking-wide' dangerouslySetInnerHTML={{ __html: story.text }} />
 
                         {/* render replies */}
                         {story.kids?.map((kid) => <Comment key={kid} id={kid} />)}

@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 
 // story context provider
 import StoryProvider from './hooks/story-hook';
@@ -13,9 +14,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <StoryProvider>
-        <App />
-      </StoryProvider>
+      <HelmetProvider>
+        <StoryProvider>
+          <App />
+        </StoryProvider>
+      </HelmetProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 export default function useLocalstorage(key) {
     // get initial item from provided key
-    const initem = JSON.parse(localStorage.getItem(key)) || [];
+    const initem = JSON.parse(localStorage.getItem(key));
 
     // state to update the hook
     const [item, setItem] = useState(initem);
