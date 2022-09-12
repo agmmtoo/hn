@@ -11,11 +11,12 @@ import classNames from '../utils/classNames';
 // USING MEMO HERE IS FUCKING RIGHT
 // render only once on same id
 export default memo(function Bookmark({ id }) {
-    const [bookmarks, setBookmarks] = useLocalstorage('bookmarks');
+    // set initial state to empty array
+    const [bookmarks, setBookmarks] = useLocalstorage('bookmarks', []);
 
     // methods to wrap bookmark hook
     // predicate to check if item is bookmarked
-    const bookmarked = (id) => bookmarks.includes(id);
+    const bookmarked = (id) => bookmarks?.includes(id);
     // spread old items and add new item to bookmark list
     const addToBookmarks = (id) => setBookmarks([...bookmarks, id]);
     // filter out item from bookmark array
