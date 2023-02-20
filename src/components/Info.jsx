@@ -13,7 +13,7 @@ export default function Info({ story }) {
             {typeof (story.idx) == 'number'
                 && <div className='inline-flex items-center'>
                     <HiOutlineHashtag className='inline mr-1' />
-                    {story.idx++}
+                    {++story.idx}
                 </div>}
 
             <div className='inline-flex items-center'>
