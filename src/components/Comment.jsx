@@ -54,7 +54,7 @@ export default function Comment({ id }) {
             <div
                 onClick={() => setOpen(open => !open)}
                 className={classNames(
-                    'py-2 px-1 flex justify-between text-sm text-gray-600 dark:text-gray-400',
+                    'py-2 px-1 flex justify-between text-sm text-gray-600 dark:text-gray-400 cursor-pointer',
                     open
                         ? ''
                         : 'rounded shadow shadow-sky-800 dark:shadow-sky-400'
