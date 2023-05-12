@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { HiOutlineFire, HiOutlineTrendingUp, HiOutlineSparkles } from 'react-icons/hi';
+import { useNavigate, Link, useMatch } from 'react-router-dom';
+import { HiOutlineFire, HiOutlineTrendingUp, HiOutlineSparkles, HiOutlineSearch } from 'react-icons/hi';
 
 import { StoryContext } from '../hooks/story-hook';
 
@@ -11,6 +11,8 @@ export default function Tabs() {
         setTab(tab);
         navigate('..');
     }
+
+    const isOnSearchPage = useMatch('/search')
 
     return (
         <nav className='flex items-center justify-center gap-4'>
@@ -36,6 +38,14 @@ export default function Tabs() {
                         className={`w-6 h-6 cursor-pointer hover:text-green-500 hover:scale-110 transition ${tab === 'beststories' && 'text-green-500'}`}
                     />
                 </button>
+            </abbr>
+
+            <abbr title='Search'>
+                <Link to='/search' onClick={() => setTab('')}>
+                    <HiOutlineSearch
+                        className={`w-6 h-6 cursor-pointer hover:text-sky-500 hover:scale-110 transition ${isOnSearchPage && 'text-sky-500'}`}
+                    />
+                </Link>
             </abbr>
         </nav>
     );
