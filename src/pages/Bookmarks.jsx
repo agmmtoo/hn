@@ -19,7 +19,7 @@ export default function Bookmarks() {
             </Helmet>
 
             <div className='p-4 max-w-md mx-auto border rounded-lg border-sky-300 text-sky-800 dark:text-sky-200 shadow bg-gradient-to-tl from-sky-200 to-cyan-100 dark:from-sky-700 dark:to-cyan-700'>
-                <div className='font-medium'>Made with love by <a href='https://github.com/agmyintmyatoo'>agmyintmyatoo</a>.</div>
+                <div className='font-medium'>Made with love by <a href='https://github.com/agmmtoo'>agmyintmyatoo</a>.</div>
                 <ul className='list-disc list-inside'>
                     <li>Dark mode: <DarkModeSwitch /></li>
                     <li>Tap top of screen to scroll to top.</li>
