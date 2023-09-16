@@ -14,7 +14,7 @@ const useObserver = () => {
 
     const options = {
         root: null,
-        rootMargin: '0px',
+        rootMargin: '20%',
         threshold: 0.5,
     }
 
