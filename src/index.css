@@ -15,7 +15,7 @@
   html,
   body,
   #root {
-    @apply min-h-full bg-slate-200 text-slate-800 dark:bg-zinc-900 dark:text-zinc-200;
+    @apply min-h-full bg-slate-200 text-slate-800 dark:bg-zinc-900 dark:text-zinc-200 scroll-smooth;
   }
 }
 
