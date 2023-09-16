@@ -15,6 +15,9 @@ import InfoComment from './InfoComment';
 // utils
 import classNames from '../utils/classNames';
 
+// helpers
+import parsePostBody from '../helpers/parsePostBody';
+
 export default function Comment({ id }) {
     // hook to observe the element
     const [elemRef, intersecting] = useObserver();
@@ -72,7 +75,7 @@ export default function Comment({ id }) {
             {
                 open && (
                     <>
-                        <p className='prose dark:prose-invert md:prose-lg  py-4 leading-7 tracking-wide' dangerouslySetInnerHTML={{ __html: story.text }} />
+                        <p className='prose dark:prose-invert md:prose-lg  py-4 leading-7 tracking-wide' dangerouslySetInnerHTML={{ __html: parsePostBody(story.text) }} />
 
                         {/* render replies */}
                         {story.kids?.map((kid) => <Comment key={kid} id={kid} />)}
